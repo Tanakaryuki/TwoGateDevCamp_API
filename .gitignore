@@ -1,6 +1,7 @@
 # Local environment specific
 .azure/
 .vscode/
+.dockerignore
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
