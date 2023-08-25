@@ -1,39 +1,30 @@
----
-page_type: sample
-description: "A minimal sample app that can be used to demonstrate deploying FastAPI apps to Azure App Service."
-languages:
-- python
-products:
-- azure
-- azure-app-service
----
+# 開発方法
 
-# Deploy a Python (FastAPI) web app to Azure App Service - Sample Application
+## コンテナビルド
 
-This is the sample FastAPI application for the Azure Quickstart [Deploy a Python (Django, Flask or FastAPI) web app to Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/quickstart-python). For instructions on how to create the Azure resources and deploy the application to Azure, refer to the Quickstart article.
+`docker build --tag fastapi-demo .`
 
-Sample applications are available for the other frameworks here:
-- Django [https://github.com/Azure-Samples/msdocs-python-django-webapp-quickstart](https://github.com/Azure-Samples/msdocs-python-django-webapp-quickstart)
-- Flask [https://github.com/Azure-Samples/msdocs-python-flask-webapp-quickstart](https://github.com/Azure-Samples/msdocs-python-flask-webapp-quickstart)
+## コンテナの起動
 
-If you need an Azure account, you can [create one for free](https://azure.microsoft.com/en-us/free/).
+`docker run  --publish 3100:80 fastapi-demo uvicorn main:app --host 0.0.0.0 --port 80 --reload`
 
-## Local Testing
+## コンテナの確認
 
-To try the application on your local machine:
+`docker ps`
 
-### Install the requirements
+## コンテナの停止
 
-`pip install -r requirements.txt`
+`docker stop {CONTAINER ID}`
 
-### Start the application
+## コンテナの削除
 
-`uvicorn main:app --reload`
+`docker rm {CONTAINER ID}`
 
-### Example call
+## ngrok の起動
 
-http://127.0.0.1:8000/
+`ngrok http 3100`
 
-## Next Steps
+## コンテナのデプロイ
 
-To learn more about FastAPI, see [FastAPI](https://fastapi.tiangolo.com/).
+`aer run  --publish 3100:80 fastapi-d
+z acr build   --resource-group web-app-simple-rg   --registry twogate   --image webappsimple:latest .`
